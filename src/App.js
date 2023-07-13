@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import contacts from "./contacts.json";
+
+const fiveContacts = contacts.filter((contact, index) => {
+  return index < 5;
+});
+console.log(fiveContacts);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>IronContacts</h2>
+      <table>
+        <tr>
+          <th>
+            <b>Picture</b>
+          </th>
+          <th>
+            <b>Name</b>
+          </th>
+          <th>
+            <b>Popularity</b>
+          </th>
+          <th>
+            <b>Won Oscar</b>
+          </th>
+          <th>
+            <b>Won Emmy</b>
+          </th>
+        </tr>
+
+        {fiveContacts.map((contact) => {
+          return (
+            <tr key={contact.id}>
+              <td>
+                <img src={contact.pictureUrl} className="contact-picture"></img>
+              </td>
+              <td>{contact.name}</td>
+              <td>{contact.popularity}</td>
+              <td>{contact.wonOscar ? <p>🏆</p> : ""}</td>
+              <td>{contact.wonEmmy ? <p>🏆</p> : ""}</td>
+            </tr>
+          );
+        })}
+      </table>
     </div>
   );
 }
